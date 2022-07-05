@@ -1,9 +1,12 @@
 const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
+const security = require("./middleware/security")
 const { PORT } = require("./config")
 const { NotFoundError } = require("./utils/errors")
 const authRoutes = require("./routes/auth")
+const storeRoutes = require("./routes/store")
+const orderRoutes = require("./routes/order")
 
 const app = express()
 
@@ -16,7 +19,12 @@ app.use(express.json())
 // log requests info
 app.use(morgan("tiny"))
 
+app.use(security.extractUserFromJwt)
+
+
 app.use("/auth", authRoutes)
+app.use("/store", storeRoutes)
+app.use("/order", orderRoutes)
 
 /** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => {
