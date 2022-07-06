@@ -7,8 +7,8 @@ const router = express.Router()
 router.get("/", security.requireAuthenticatedUser, async (req,res,next) => {
     try {
         const { user } = res.locals
-        const products = await Order.listOrdersForUser({ user })
-        return res.status(200).json({orders: products})
+        const orders = await Order.listOrdersForUser(user)
+        return res.status(200).json({orders: orders})
     } catch (err){
         next(err)
     }

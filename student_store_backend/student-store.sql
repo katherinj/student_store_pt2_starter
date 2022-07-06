@@ -5,7 +5,7 @@ DROP DATABASE student_store;
 CREATE DATABASE student_store;
 \connect student_store
 
-\i studen-store-schema.sql
+\i student-store-schema.sql
 \i student-store-seed.sql
 
 \echo 'Delete and recreate student_store_test db?'

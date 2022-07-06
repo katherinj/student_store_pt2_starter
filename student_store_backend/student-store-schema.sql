@@ -19,7 +19,7 @@ CREATE TABLE products (
 
 CREATE TABLE orders(
   id          SERIAL PRIMARY KEY,
-  customer_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+  customer_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   created_at  TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
